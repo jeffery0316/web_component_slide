@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../components/platform/platform.js"></script>
+        <link rel="import" href="../components/core-ajax/core-ajax.html">
+    </head>
+    <body>
+        <core-ajax auto url="http://gdata.youtube.com/feeds/api/videos/"
+            params='{"alt":"json", "q":"chrome"}' handleAs="json"></core-ajax>
+
+        <template repeat="{{response}}">
+            <div>{{title.$t}}</div>
+        </template>
+        <script>
+            document.addEventListener('polymer-ready', function() {
+                var ajax = document.querySelector("core-ajax");
+
+                // handle the ajax response
+                ajax.addEventListener("core-response",
+                    function(e) {
+                        document.querySelector('template').model = {
+                            response: e.detail.response.feed.entry
+                        };
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>

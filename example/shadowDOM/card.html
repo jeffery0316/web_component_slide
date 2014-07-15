@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+
+        <div id="nameTag">Bob</div>
+        <template id="nameTagTemplate">
+            <style>
+                .outer {
+                  border: 2px solid brown;
+                  border-radius: 1em;
+                  background: red;
+                  font-size: 20pt;
+                  width: 12em;
+                  height: 7em;
+                  text-align: center;
+                }
+                .boilerplate {
+                  color: white;
+                  font-family: sans-serif;
+                  padding: 0.5em;
+                }
+                .name {
+                  color: black;
+                  background: white;
+                  font-family: "Marker Felt", cursive;
+                  font-size: 45pt;
+                  padding-top: 0.2em;
+                }
+            </style>
+            <div class="outer">
+              <div class="boilerplate">
+                Hi! My name is
+              </div>
+              <div class="name">
+                <content></content>
+              </div>
+            </div>
+        </template>
+        <script type="text/javascript">
+            var shadow = document.querySelector('#nameTag').createShadowRoot();
+            var template = document.querySelector('#nameTagTemplate');
+            shadow.appendChild(template.content);
+            document.querySelector('#nameTag').textContent = 'Shellie';
+
+        </script>
+    </body>
+</html>

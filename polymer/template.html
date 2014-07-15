@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+
+  <script src="../components/platform/platform.js"></script>
+  <link rel="import" href="../components/font-roboto/roboto.html">
+  <link rel="import" href="../components/core-icons/core-icons.html">
+  <link rel="import" href="../components/paper-button/paper-button.html">
+
+  <link rel="import" href="../components/core-header-panel/core-header-panel.html">
+  <link rel="import" href="../components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="../components/paper-tabs/paper-tabs.html">
+  <link rel="import" href="post-card.html">
+
+  <link rel="import" href="../example/embed-spotify/src/embed-spotify-play.html">
+  <link rel="import" href="../example/embed-spotify/src/embed-spotify-follow.html">
+
+  <link rel="import" href="../example/observer/calculator.html">
+  <link rel="import" href="../example/core-ajax/demo.html">
+  <link rel="import" href="../components/core-ajax/core-ajax.html">
+<!--  <link rel="import" href="../example/example5.html"> -->
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script src="../example/js/jquery-1.11.1.min.js"></script>
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <style>
+    .browser-support {
+      width: 120px;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    html,body {
+      height: 100%;
+      margin: 0;
+      background-color: #FFFFFF;
+     /* background-color: #E5E5E5;*/
+      font-family: 'RobotoDraft', sans-serif;
+    }
+    td,th {
+      text-align: center;
+    }
+    core-header-panel {
+      height: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    core-toolbar {
+      background: #03a9f4;
+      color: white;
+    }
+    paper-tabs {
+      width: 100%;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .container {
+      width: 80%;
+      margin: 50px auto;
+    }
+    @media (min-width: 481px) {
+      paper-tabs {
+        width: 200px;
+      }
+      .container {
+        width: 400px;
+      }
+    }
+
+    .mosaic {
+      -webkit-filter: blur(0.8px);
+      -moz-filter: blur(0.8px);
+      -o-filter: blur(0.8px);
+      -ms-filter: blur(0.8px);
+      filter: blur(0.8px);
+    }
+    </style>
+</head>
+<body style="opacity: 0"  unresolved touch-action="auto">
+
+<slides class="layout-widescreen">
+
+  <!--<slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <div><img src="images/google_developers_logo.png"></div>
+      <div>Introduction to Google Polymer</div>
+    </article>
+  </slide>
+  -->
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar">
+      <img src="images/KKBOX_app_icon/KKBOX_app_icon.png">
+      <!--<img src="images/google_developers_icon_128.png">-->
+    </aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>整份投影片濃縮部分資料</h2>
+    </hgroup>
+    <article>
+      <br/><br/><br/>
+      <ul>
+        <li>2012
+          <a href="http://html5-demos.appspot.com/static/webcomponents/index.html">&lt;web>components&lt;/web></a>
+        </li>
+        <li>2013/02
+          <a href="https://www.youtube.com/watch?v=qpViDkcI1Cs">javascript.tw社群聚會影片連結</a>
+        </li>
+        <li>2013/05
+          <a href="http://www.webcomponentsshift.com/">Web Components, a tectonic shift for web development</a>
+          <a href="https://www.youtube.com/watch?v=fqULJBBEVQE">影片連結</a>
+        </li>
+        <li>2014/06
+          <a href="http://polymer-change.appspot.com/">Google I/O 2014 Polymer & Web Components</a>
+          <a href="https://www.youtube.com/watch?v=8OJ7ih8EE7s">影片連結</a>
+        </li>
+        <li>
+          <a href="http://www.html5rocks.com/zh/search?q=web+component">html5rocks的一拖拉庫資源</a>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Component</h2>
+    </hgroup>
+    <article>
+      <br/><br/><br/>
+      <ul>
+        <li>
+          HTML Template
+        </li>
+        <li>
+          Custom Element
+        </li>
+        <li>
+          Shadow DOM
+        </li>
+        <li>
+          HTML Imports
+        </li>
+        <li>
+          Data binding
+        </li>
+        <li>
+          Decorators (only described in W3C draft)
+        </li>
+      </ul>
+    </article>
+  </slide>
+  <slide style="background-image: url('../images/slow1.jpg'); background-repeat: no-repeat;background-size: 1100px auto;">
+    <article>
+      <div style="margin-left: 200px;margin-top: 360px; font-size: 3em; color: grey;">Low Performance
+      </div>
+    </article>
+  </slide>
+
+  <slide style="background-image: url('../images/code-dirty.jpg'); background-size: 1180px auto;">
+    <article>
+      <div style="margin-left: 500px;margin-top: 560px; font-size: 2em; color: white;">Template Engine
+      </div>
+      <div style="font-size: 0.3em; margin-top: 10px;">http://kkga.github.io/spacegray/</div>
+    </article>
+  </slide>
+
+  <slide style="background-image: url('../images/uni2.jpg'); background-size: 1100px auto;">
+    <article>
+      <div style="margin-top: 560px; font-size: 2em; color: white;">Icon Design</div>
+      <div style="font-size: 0.3em; margin-top: 10px;">https://dribbble.com/vi</div>
+    </article>
+  </slide>
+
+  <slide style="background-image: url('../images/old3.jpg'); background-size: 1100px auto;">
+    <hgroup>
+        <h2></h2>
+    </hgroup>
+    <article>
+    <div style="margin-left: 600px; margin-top: 60px; font-size: 2em; color: white;">Back To Start</div>
+    <div style="margin-top: 500px; font-size: 0.3em;">https://www.flickr.com/photos/bionicteaching/<div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML Template</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>template element可以之後再被使用</li>
+        <li>script不會被執行，image不會下載</li>
+        <li>template不會直接顯示於document中 (render)</li>
+        <li>較為理想的方式進行template element操作</li>
+        <li>display:none default</li>
+      </ul>
+      Usage:
+      <pre class="prettyprint" style="margin-top: 10px;" data-lang="html">
+      &lt;template id="commentTemplate">
+          &lt;div>
+              &lt;img src="">
+              &lt;div class="comment-text">&lt;/div>
+          &lt;/div>
+      &lt;/template></pre>
+      <p style="margin-top: -10px;">
+      <span><img src="../images/chrome.png" class="browser-support"/><span>28</span></span>
+      <span><img src="../images/firefox.png" class="browser-support"/><span>33</span></span>
+      <span><img src="../images/safari.png" class="browser-support"/><span>8</span></span>
+      <span><img src="../images/ie.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+      </p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>HTML Template</h2>
+    </hgroup>
+    <article>
+      使用javascript直接操作template
+      <pre class="prettyprint" style="margin-top: 10px;" data-lang="javascript">
+    $('#useme').on('click', function () {
+        var content = document.querySelector('template').content;
+
+        // 更新 template DOM 中的内容，並加至span中
+        var span = content.querySelector('span');
+        span.textContent = parseInt(span.textContent) + 1;
+        $('#container').html('Template used: &lt;span>' + span.textContent + '&lt;/span>');
+    });</pre>
+
+      DOM Tree
+      <pre class="prettyprint" style="margin-top: 10px;" data-lang="html">
+    &lt;button id="useme">Use me&lt;/button>
+    &lt;div id="container">&lt;/div>
+    &lt;template id="temp">
+      &lt;div>Template used: &lt;span>0&lt;/span>&lt;/div>
+    &lt;/template></pre>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Before HTML Template</h2>
+    </hgroup>
+    <article>
+      <span> <div style="margin-bottom: 10px;">僅用div模擬Template的功能</div>
+        <div>
+          <pre class="prettyprint" data-lang="html">
+          &lt;div id="mytemplate" hidden>
+            &lt;img src="logo.png">
+            &lt;div class="comment">&lt;/div>
+          &lt;/div></pre>
+        </div>
+      </span>
+      <span> <div style="margin-bottom: 10px;">使用script loading</div>
+        <div>
+          <pre class="prettyprint" data-lang="html">
+          &lt;script id="mytemplate" type="text/x-handlebars-template">
+            &lt;img src="logo.png">
+            &lt;div class="comment">&lt;/div>
+          &lt;/script></pre>
+        </div>
+      </span>
+      <span> <div style="margin-bottom: 10px;">使用HTML Template</div>
+        <div>
+          <pre class="prettyprint" data-lang="html">
+          &lt;template id="mytemplate">
+            &lt;img src="logo.png">
+            &lt;div class="comment">&lt;/div>
+          &lt;/template></pre>
+        </div>
+      </span>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>HTML Template - 搭配</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>搭配css, javascript做成預先定義的範本 (clonable DOM)</li>
+        <li>搭配HTML import，以達成類似module的功能</li>
+        <li>example: <a href="https://github.com/zenorocha/embed-spotify">embedded spotify</a></li>
+        <div style="margin-left: 30%;"><embed-spotify-play></embed-spotify-play></div>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Custom Element</h2>
+    </hgroup>
+    <article>
+      <br/><br/><br/>
+      <ul>
+        <li>定義自己的element, 每個element能擁有自己的properties, methods, events</li>
+        <li>其他framework能夠一起並用</li>
+        <li>直接與底層的DOM操作, addEventListener...等function仍然可以重複使用</li>
+        <li>鍵盤, focus, ARIA (accessibility)</li>
+        <li>chrome/firefox devtools可以直接偵測element tag</li>
+        <li>許多現成的kit ＠ <a href="http://customelements.io">http://customelements.io</a></li>
+      </ul>
+      <p style="margin-top: -10px;">
+        <span><img src="../images/chrome.png" class="browser-support"/><span>33</span></span>
+        <span><img src="../images/firefox.png" class="browser-support"/><span></span></span>
+        <span><img src="../images/safari.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+        <span><img src="../images/ie.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+      </p>
+      <!--<pre class="prettyprint" data-lang="html">
+      &lt;x-foo constructor="XFoo" name="hello">&lt;/x-foo>&lt; definition </pre>
+      -->
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Custom Element - Example</h2>
+    </hgroup>
+    <article>
+      <br/>
+      <pre class="prettyprint" data-lang="javascript">
+        &lt;element name="x-foo" constructor="XFoo">
+          &lt;section> Foo bar test&lt;/section>
+          &lt;script>
+            var section = this.querySelector('section');
+            this.register({
+              prototype: {
+                readyCallback: function() {
+                  this.textContent = section.textContent;
+                },
+                foo: function() {alert('foo() is called');}
+              }
+            });
+        &lt;/element></pre>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Use Custom Element</h2>
+    </hgroup>
+    <article>
+
+      <pre class="prettyprint" data-lang="javascript">
+      &lt;x-foo>&lt;/x-foo>&lt;!-- names must contains dash -->
+      /* or use in DOM */
+      var elem = document.createElement('x-foo');
+      elem.addEventListener('click', function(e) {
+        e.target.foo(); // alert 'foo() called'.
+      });</pre>
+      <pre class="prettyprint" data-lang="javascript">
+      /* new a object */
+      var elem = new XFoo();
+      document.body.appendChild(elem);
+      /* define element in JS */
+      var XFoo = document.registerElement('x-foo');
+      document.body.appendChild(new XFoo());</pre>
+      <a href="../example/import_custom_element/custom_element.html">demo</a>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Shadow DOM</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>DOM/CSS scoping，element並不能被直接存取</li>
+        <li>可以做data-binding</li>
+        <li>封裝DOM Tree，確保其他library不會更動到其中的element</li>
+      </ul>
+      <p style="margin-top: -10px;">
+        <span><img src="../images/chrome.png" class="browser-support"/><span>25 with --webkit--</span></span>
+        <span><img src="../images/firefox.png" class="browser-support"/><span>31</span></span>
+        <span><img src="../images/safari.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+        <span><img src="../images/ie.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Shadow DOM</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Shadow Root</li>
+        <ul><p>與shadow root相連的element都稱為shadow host</p><p>在進行頁面渲染時，僅顯示shadow root
+        的內容。shadow host的值會被shadow root覆蓋。</p><p>但是使用javascript取textContent，則只會取得shadow host的值 (shadow root被封裝)</p></ul>
+        <li><a href="../example/shadowDOM/visualizer.html">Shadow DOM Tree</a></li>
+        <li>Shadow DOM with document fragment</li>
+        <pre class="prettyprint" data-lang="javascript">
+          &lt;button>Hello, world!&lt;/button>
+          &lt;script>
+          var host = document.querySelector('button');
+          var root = host.createShadowRoot();
+          root.textContent = 'こんにちは、影の世界!';
+          &lt;/script></pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML Imports</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>元件化方法：</li>
+          <p>用iframe區隔不同的document，但是iframe與當前頁面的互相操作不方便，且iframe的width/height也很複雜</p>
+          <p>用Ajax插入HTML DOM，並產生JS+HTML的骯髒寫法</p>
+      </ul>
+      <pre class="prettyprint" data-lang="html">
+      &lt;!DOCTYPE html>
+      &lt;html>
+        &lt;head>
+          &lt;link rel="import" href="x-foo.html">
+        &lt;/head>
+        &lt;body>
+          &lt;x-foo>&lt;/x-foo> &lt;!-- Element definition is in x-foo.html -->
+        &lt;/body>
+      &lt;/html></pre>
+      <p style="margin-top: -10px;">
+        <span><img src="../images/chrome.png" class="browser-support"/><span>with --webkit--</span></span>
+        <span><img src="../images/firefox.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+        <span><img src="../images/safari.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+        <span><img src="../images/ie.png" class="browser-support" style="width: 110px; height: auto; filter: blur(20px) grayscale(1); -webkit-filter: grayscale(1);"/></span><span>RIP</span>
+      </p>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>HTML Imports</h2>
+    </hgroup>
+    <article>
+      <h3>Feature detection</h3>
+      <pre class="prettyprint" data-lang="javascript">
+      function is_support() {
+        return 'import' in document.createElement('link');
+      }</pre>
+
+      <h3>Advantage: </h3>
+      <ul>
+        <li>wrap in a html document</li>
+        <li>dependency management</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Demo</h2>
+    </hgroup>
+    <article>
+      <div><a href="../example/example3.html">example3.html</a></div>
+      <div><a href="../example/shadowDOM/card.html">shadowDOM</a></div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Component</h2>
+    </hgroup>
+    <article>
+      <h3>Advantage: </h3>
+      <ul>
+          <li>end-user: 找到toolkit，利用HTML Import載入，再使用它</li>
+          <li>developer: 不僅JS可以做成套件，HTML也可以套件化</li>
+          <li>直接改變Front-End開發環境</li>
+          <li>有了DOM/CSS scoping、component化後的設計，更加好維護</li>
+          <li>直接操作low-level DOM，又可以更其他framework整合</li>
+          <li>JS以外，DOM也可變成套件 (extensibility, reusability)</li>
+      </ul>
+    </article>
+  </slide>
+  <slide class="layout-widscreen" style="background-image: url('../images/component.jpg');">
+    <article style="color: white; font-weight: 600; font-size: 2.5em;">
+      <div style="margin-top: 550px;">Decoupled and high flexibility</div>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>Google Polymer</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Custom Element</li>
+        <li>Shadow DOM</li>
+        <li>HTML Imports</li>
+        <li>Web Animations</li>
+      </ul>
+      <ul>
+      </ul>
+      <p>特色:</p>
+      <ul>
+        <li>powerful polyfill support</li>
+        <li>polymer-core element (essential element), paper element (UI)</li>
+        <li>polymer element with HTML import</li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup><h2>Polymer - Data binding</h2></hgroup>
+    <article>
+      <p style="letter-spacing: 2px;">Polymer supports two-way data binding. Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of an application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
+      </p>
+      <pre class="prettyprint" data-lang="javascript">
+      &lt;polymer-element name="tag-name" constructor="TagName">
+        &lt;template>
+        &lt;!-- shadow DOM here -->
+        &lt;/template>
+        &lt;script>Polymer('tag-name');&lt;/script>
+      &lt;/polymer-element></pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Polymer - Example</h2>
+    </hgroup>
+    <article>
+      <x-calculator></x-calculator>
+      <binding-example></binding-example>
+      <p><a href="../example/observer/calculator.html">source code</a></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Polymer - Core Element</h2>
+    </hgroup>
+    <article>
+      <p>core-ajax: <a href="http://www.polymer-project.org/docs/elements/core-elements.html#core-animated-pages">guide</a></p>
+      <pre class="prettyprint" data-lang="javascript">
+      &lt;core-ajax auto url="http://gdata.youtube.com/feeds/api/videos/"
+          params='{"alt":"json", "q":"chrome"}'
+          handleAs="json">
+      &lt;/core-ajax></pre>
+      <div style="width: 500px; margin-bottom: 50px;"><a href="../example/example5.html">core-ajax examle</a>
+      </div>
+
+      <polymer-element>
+        <core-ajax auto url="http://gdata.youtube.com/feeds/api/videos/"
+            params='{"alt":"json", "q":"chrome"}'
+            handleAs="json">
+        </core-ajax>
+        <template repeat="{{response.feed.entry}}">
+          <div>{{title.$t}}</div>
+        </template>
+        <script>
+          document.addEventListener('polymer-ready', function() {
+            var ajax = document.querySelector("core-ajax");
+            ajax.addEventListener("core-response",
+              function(e) {
+                e.detail.response.feed.entry = e.detail.response.feed.entry.splice(1, 5);
+                document.querySelector('template').model = {
+                  response: e.detail.response
+                };
+              }
+            );
+          });
+        </script>
+      </polymer-element>
+    </article>
+  </slide>
+
+  <slide>
+    <style shim-shadowdom>
+      body {
+        font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+        margin: 0;
+        padding: 24px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-touch-callout: none;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+      }
+
+      section {
+        padding: 20px 0;
+      }
+
+      section > div {
+        padding: 14px;:width;
+      }
+
+      paper-button {
+        margin: 1em;
+        width: 10em;
+      }
+
+      paper-button.colored {
+        color: #4285f4;
+        fill: #4285f4;
+      }
+
+      paper-button[raisedButton].colored {
+        background: #4285f4;
+        color: #fff;
+      }
+
+      paper-button[raisedButton].colored #ripple,
+      paper-button[raisedButton].colored::shadow #ripple {
+        color: #2a56c6;
+      }
+
+      paper-button[raisedButton].colored #focusBg,
+      paper-button[raisedButton].colored::shadow #focusBg {
+        background: #3367d6;
+      }
+
+    </style>
+    <hgroup>
+      <h2>Polymer - Paper Element</h2>
+    </hgroup>
+    <article>
+      <ul><li>FOUC (flash of unstyled content)</li>
+      <li><a href="../components/paper-button/demo.html">demo</a></li></ul>
+      <section>
+        <div>Flat buttons</div>
+
+        <paper-button label="button"></paper-button>
+        <paper-button class="colored" label="colored"></paper-button>
+        <!-- <paper-button focused label="focused"></paper-button> -->
+        <paper-button disabled label="disabled" onclick="alert('should not be clickable');"></paper-button>
+      </section>
+      <section>
+        <div>Raised buttons</div>
+
+        <paper-button raisedButton label="button"></paper-button>
+        <paper-button raisedButton class="colored" label="colored"></paper-button>
+        <!-- <paper-button raisedButton focused label="focused"></paper-button> -->
+        <paper-button raisedButton disabled label="disabled" onclick="alert('should not be clickable');"></paper-button>
+      </section>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Demo</h2>
+    </hgroup>
+    <div style="height: 15px;"></div>
+    <core-header-panel>
+      <core-toolbar>
+        <paper-tabs valueattr="name" selected="all" self-end>
+          <paper-tab name="all">ALL</paper-tab>
+          <paper-tab name="favorites">FAVORITES</paper-tab>
+        </paper-tabs>
+      </core-toolbar>
+
+      <!-- main page content will go here -->
+      <div class="container" layout vertical center>
+          <post-card>
+            <img src="../images/my.jpg" width="70" height="70">
+              <h2>Jeffery Kao</h2>
+              <div style="float:right;">
+                <h3>KKBOX engineer</h3>
+                <h4>example@kkbox.com</h4>
+              </div>
+          </post-card>
+      </div>
+    </core-header-panel>
+
+    <article>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Browser相容性</h2>
+    </hgroup>
+    <article>
+      <iframe data-src="https://docs.google.com/spreadsheet/pub?key=0Anye-JMjUkZZdDdoblh6dTlwcWRLQkhKbTVzdHJtcXc&single=true&gid=2&output=html&range=A1:Q43"></iframe>
+      <ul>
+        <li>http://googlewebcomponents.github.io/</li>
+        <li>http://polymer-change.appspot.com</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup><h2>Polymer V.S. AngularJS</h2>
+    </hgroup>
+    <article>
+      <table>
+        <tr>
+          <th></th><th>Polymer</th><th>AngularJS</th>
+        </tr>
+        <tr>
+          <td>Encapsulation</td><td>Shadow DOM</td><td>element directive</td>
+        </tr>
+        <tr>
+          <td>Target</td><td>Provide much high-level API</td><td>Help to build reusable web component</td>
+        </tr>
+      </table>
+      <span style="font-size: 15px; float:right; margin-top: 15px;"><a href="http://www.binpress.com/blog/2014/06/26/polymer-vs-angular/">Here’s the difference between Polymer and Angular</a></span>
+      <div style="letter-spacing: 1px; margin-top: 80px;"><u>AngularJS</u> taught people how to think declaratively. <u>Web components</u> are framework-independent. The only thing that is tricky is to combine Polymer with another framework inside a web component.</div>
+      <span style="font-size: 15px; float:right; margin-top: 15px;"><a href="http://www.2ality.com/2013/07/hello-polymer.html">Hello Polymer: Q&A with Google’s Polymer team</a></span>
+    </article>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type='text/javascript'>
+</script>
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,66 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<polymer-element name="binding-example">
+    <template>
+        <h3>Use Iterator In Template</h3>
+        <template repeat="{{s in salutations}}">
+            <ul>
+                <li>{{s.what}}: {{s.who}}</li>
+            </ul>
+        </template>
+    </template>
+    <script type='text/javascript'>
+        Polymer('binding-example', {
+            ready: function () {
+                this.salutations = [
+                  {what: 'Hello', who: 'World'},
+                  {what: 'GoodBye', who: 'DOM APIs'},
+                  {what: 'Hello', who: 'Declarative'},
+                  {what: 'GoodBye', who: 'Imperative'}
+                ];
+            }
+        });
+    </script>
+</polymer-element>
+
+<polymer-element name="x-calculator">
+    <template>
+        <h3>Observer Element In Polymer</h3>
+        <div id="final" class="final">0</div>
+        <div>
+            <button on-click="{{calculate}}" id="first" value="1" type="text">1</button>
+            <button on-click="{{calculate}}" id="second" value="2" type="text">2</button>
+            <button on-click="{{calculate}}" id="third" value="3" type="text">3</button>
+        </div>
+        <div>
+            <button on-click="{{calculate}}" id="forth" value="1" type="text">4</button>
+            <button on-click="{{calculate}}" id="fifth" value="2" type="text">5</button>
+            <button on-click="{{calculate}}" id="sixth" value="3" type="text">6</button>
+        </div>
+        <div>
+            <button on-click="{{calculate}}" id="seventh" value="7" type="text">7</button>
+            <button on-click="{{calculate}}" id="eighth" value="8" type="text">8</button>
+            <button on-click="{{calculate}}" id="nighth" value="9" type="text">9</button>
+        </div>
+        <style>
+            .final {
+                color: blue;
+            }
+        </style>
+    </template>
+    <script type='text/javascript'>
+        Polymer('x-calculator', {
+            observe: {
+                '$.first.value': 'cal',
+                '$.second.value': 'cal'
+            },
+            calculate: function (event, detail, sender) {
+                this.$.final.textContent = Number(this.$.final.textContent) + Number(sender.textContent);
+            },
+            cal: function (oldVal, newVal) {
+                var a = document.querySelector('#final');
+                this.$.final.value = Number(this.$.first.value) + Number(this.$.second.value);
+            }
+        });
+    </script>
+</polymer-element>

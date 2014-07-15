@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!-- <x-foo>123</x-foo> -->
+        <script type='text/javascript'>
+            var xFoo = document.createElement('x-foo');
+            xFoo.textContent = 'hello world';
+            xFoo.addEventListener('click', function(e) {
+              alert('you click x-tag');
+            });
+            document.body.appendChild(xFoo);
+        </script>
+    </body>
+</html>

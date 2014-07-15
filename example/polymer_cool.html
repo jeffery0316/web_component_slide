@@ -1,0 +1,43 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="polymer-cool">
+  <template>
+    <style>
+      .cool {
+        color: red;
+        font-size: 18px;
+      }
+    </style>
+    <div class="cool">You are {{praise}} <content></content>!</div>
+  </template>
+  <script>
+    Polymer('polymer-cool', {
+      praise: 'cool'
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="polymer-cooler" extends="polymer-cool">
+  <template>
+    <!-- A shadow element render's the extended
+         element's shadow dom here. -->
+    <shadow></shadow> <!-- "You are cool Matt" -->
+  </template>
+  <script>
+    Polymer('polymer-cooler');
+  </script>
+</polymer-element>
+
+<polymer-element name="hint-element" attributes="isReady items">
+  <script>
+    Polymer('hint-element', {
+      isReady: false,
+      publish: {
+        count: 0
+      },
+      created: function () {
+        this.items = [];
+      }
+    });
+  </script>
+</polymer-element>

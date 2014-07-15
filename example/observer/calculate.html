@@ -1,0 +1,34 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<polymer-element name="x-cal">
+    <template>
+        <div>
+            <input id="first" value="123" type="text"/>
+            <input id="second" value="456" type="text"/>
+            <input id="final" value="0" class="final" type="text"/>
+        </div>
+        <style>
+            .final {
+                color: blue;
+            }
+        </style>
+    </template>
+    <script type='text/javascript'>
+        Polymer('x-cal', {
+            firstVal: document.querySelector('#first'),
+            secondVal: document.querySelector('#second'),
+            observe: {
+                '$.first.value': 'cal',
+                '$.second.value': 'cal'
+            },
+            ready: function () {
+                this.firstVal = 0;
+                this.secondVal = 0;
+            },
+            cal: function (oldVal, newVal) {
+                var a = document.querySelector('#final');
+                this.$.final.value = Number(this.$.first.value) + Number(this.$.second.value);
+            }
+        });
+    </script>
+</polymer-element>

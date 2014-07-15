@@ -1,0 +1,22 @@
+
+<link rel="import" href="../../components/polymer/polymer.html">
+<polymer-element name="poly-ajax">
+  <template>
+</template>
+  <template repeat="{{response.feed.entry}}">
+    <div>{{title.$t}}</div>
+  </template>
+
+  <script>
+    document.addEventListener('polymer-ready', function() {
+      var ajax = document.querySelector("core-ajax");
+      ajax.addEventListener("core-response",
+        function(e) {
+          document.querySelector('template').model = {
+            response: e.detail.response
+          };
+        }
+      );
+    });
+  </script>
+</polymer-element>
