@@ -14,7 +14,8 @@
             $(document).ready(function () {
 
                 $('#useme').on('click', function () {
-                    var content = $('#temp')[0].content;//document.querySelector('template').content;
+                    //var content = $('#temp')[0].content;
+                    var content = document.querySelector('#temp').content;
 
                     // 更新 template DOM 中的内容。
                     var span = content.querySelector('span');

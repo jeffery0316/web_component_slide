@@ -241,7 +241,7 @@ body {
 /* line 62, ../scss/default.scss */
 slides > slide {
   display: none;
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Jhenghei", sans-serif;/*'Open Sans', Arial, sans-serif;*/
   font-size: 26px;
   color: #797979;
   width: 900px;
@@ -537,6 +537,7 @@ pre {
   background-color: #e6e6e6;
   left: -60px;
   position: relative;
+  margin-left: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

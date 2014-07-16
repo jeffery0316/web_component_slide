@@ -14,7 +14,15 @@
     </head>
     <body>
 
-        <div id="nameTag">Bob</div>
+        <button id="buttonTag">Hello, world!</button>
+        <script>
+        var host = document.querySelector('button');
+        var root = host.createShadowRoot();
+        root.textContent = 'こんにちは、影の世界!';
+        </script>
+
+
+        <div id="nameTag">123</div>
         <template id="nameTagTemplate">
             <style>
                 .outer {
@@ -44,7 +52,7 @@
                 Hi! My name is
               </div>
               <div class="name">
-                <content></content>
+                <content>Hello</content>
               </div>
             </div>
         </template>
@@ -52,6 +60,7 @@
             var shadow = document.querySelector('#nameTag').createShadowRoot();
             var template = document.querySelector('#nameTagTemplate');
             shadow.appendChild(template.content);
+        
             document.querySelector('#nameTag').textContent = 'Shellie';
 
         </script>

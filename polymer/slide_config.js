@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'Introduction to <br>Web Component',
+    title: 'Introduction to Web Component',
     subtitle: '初心者的web component介紹',
     eventInfo: {
       title: 'Tech talk',
@@ -27,7 +27,7 @@ var SLIDE_CONFIG = {
     gplus: '',
     twitter: '',
     www: '',
-    github: 'http://github.com/jeffery0316/'
+    github: 'https://github.com/jefferykao/web_component_slide'
   }/*, {
     name: 'Second Name',
     company: 'Job Title, Google',

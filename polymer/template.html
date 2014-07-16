@@ -33,6 +33,10 @@
   <script src="../example/js/jquery-1.11.1.min.js"></script>
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
   <style>
+
+    *{
+      font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Jhenghei", sans-serif !important;
+    }
     .browser-support {
       width: 120px;
       height: auto;
@@ -85,6 +89,10 @@
       -ms-filter: blur(0.8px);
       filter: blur(0.8px);
     }
+    .talk_dialog {
+      margin-left: 600px;
+      position: absolute;
+    }
     </style>
 </head>
 <body style="opacity: 0"  unresolved touch-action="auto">
@@ -99,21 +107,25 @@
   </slide>
   -->
   <slide class="title-slide segue nobackground">
-    <aside class="gdbar">
-      <img src="images/KKBOX_app_icon/KKBOX_app_icon.png">
+    <img src="images/talk.png" class="talk_dialog" style="position: absolute;margin-left: 60%;top:100px;">
+    <span style="color: white; font-weight: 800; left: 180px;top: 135px;" class="talk_dialog">Let's music!</span>
+    <img src="images/front.png" style="width: 900px;">
+    <aside class="gdbar" style="margin-top: 400px;">
+      <!-- <img src="images/KKBOX_app_icon/KKBOX_app_icon.png"> -->
+      <img src="images/kkbox_logo.png" style="width: 170px;">
       <!--<img src="images/google_developers_icon_128.png">-->
     </aside>
     <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-    <hgroup class="auto-fadein">
-      <h1 data-config-title><!-- populated from slide_config.json --></h1>
-      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
-      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    <hgroup class="auto-fadein" style="top: 520px;">
+      <h1 style="margin-left: 150px; font-size: 50px;" data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 style="margin-left: 430px;"data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p style="margin-top: 0px;margin-left: 670px;"data-config-presenter><!-- populated from slide_config.json --></p>
     </hgroup>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>整份投影片濃縮部分資料</h2>
+      <h2>參考資料</h2>
     </hgroup>
     <article>
       <br/><br/><br/>
@@ -343,6 +355,7 @@
                 foo: function() {alert('foo() is called');}
               }
             });
+          &lt;/script>
         &lt;/element></pre>
     </article>
   </slide>
@@ -399,6 +412,7 @@
         的內容。shadow host的值會被shadow root覆蓋。</p><p>但是使用javascript取textContent，則只會取得shadow host的值 (shadow root被封裝)</p></ul>
         <li><a href="../example/shadowDOM/visualizer.html">Shadow DOM Tree</a></li>
         <li>Shadow DOM with document fragment</li>
+      </ul>
         <pre class="prettyprint" data-lang="javascript">
           &lt;button>Hello, world!&lt;/button>
           &lt;script>
@@ -508,12 +522,33 @@
     </article>
   </slide>
   <slide>
+    <hgroup><h2>Polymer - Use</h2></hgroup>
+    <article>
+      <p>1. 開新的html文件裡頭包含以下code</p>
+      <pre class="prettyprint" data-lang="html">
+      &lt;link rel="import" href="../components/polymer/polymer.html">
+      &lt;polymer-element name="polymer-cool">
+      &lt;script>
+        Polymer('polymer-cool', {
+          ready: function() {};
+        });
+      &lt;/script>
+      &lt;/polymer-element></pre>
+      <p>2. 要使用該tag的html文件，使用以下的內容</p>
+      <pre class="prettyprint" data-lang="html">
+      &lt;!-- 載入polymer platform.js -->
+      &lt;script src="../components/platform/platform.js">&lt;/script>
+      &lt;!-- 載入custom element by HTML Import -->
+      &lt;link rel="import" href="./polymer_cool.html"></pre>
+    </article>
+  </slide>
+  <slide>
     <hgroup><h2>Polymer - Data binding</h2></hgroup>
     <article>
       <p style="letter-spacing: 2px;">Polymer supports two-way data binding. Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of an application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
       </p>
       <pre class="prettyprint" data-lang="javascript">
-      &lt;polymer-element name="tag-name" constructor="TagName">
+      &lt;polymer-element name="tag-name">
         &lt;template>
         &lt;!-- shadow DOM here -->
         &lt;/template>
@@ -544,7 +579,7 @@
           params='{"alt":"json", "q":"chrome"}'
           handleAs="json">
       &lt;/core-ajax></pre>
-      <div style="width: 500px; margin-bottom: 50px;"><a href="../example/example5.html">core-ajax examle</a>
+      <div style="width: 500px; margin-bottom: 50px;"><a href="../example/example5.html">core-ajax example</a>
       </div>
 
       <polymer-element>
@@ -626,7 +661,9 @@
       <h2>Polymer - Paper Element</h2>
     </hgroup>
     <article>
-      <ul><li>FOUC (flash of unstyled content)</li>
+      <ul><li>FOUC (flash of unstyled content)
+        <a href="../example/fouc_before.html">before</a>
+        <a href="../example/fouc_after.html">after</a></li>
       <li><a href="../components/paper-button/demo.html">demo</a></li></ul>
       <section>
         <div>Flat buttons</div>
@@ -712,18 +749,24 @@
   </slide>
 
   <slide class="thank-you-slide segue nobackground">
-    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar right">
+<!--       <img src="images/google_developers_icon_128.png"> -->
+      <img src="images/kkbox_logo.png" style="width: 170px;">
+    </aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>&lt;Thank You!&gt;</h2>
+      <h2>Thank You!</h2>
     </article>
     <p class="auto-fadein" data-config-contact>
       <!-- populated from slide_config.json -->
     </p>
   </slide>
 
-  <slide class="logoslide dark nobackground">
+  <slide class="logoslide dark nobackground" style="background-color: rgb(0, 174, 216) !important;">
     <article class="flexbox vcenter">
-      <span><img src="images/google_developers_logo_white.png"></span>
+      <span>
+        <!-- <img src="images/google_developers_logo_white.png"> -->
+        <img src="images/kkbox_hide.png" style="height: 150px;">
+      </span>
     </article>
   </slide>
 
