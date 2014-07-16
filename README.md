@@ -6,7 +6,7 @@
 
 ## 前言
 
-2013年時，ERIC BIDELMAN 就曾經在Google I/O迅速地以 [Web Components: A Tectonic Shift for Web Development](http://webcomponents.org/presentations/web-components-a-tectonic-shift-for-web-development-at-google-io/)介紹Web Component的特色與功用，這是HTML新世代的濫觴，也是接下來發展的新趨勢。
+2013年時，Eric Bidelman就曾經在Google I/O迅速地以 [Web Components: A Tectonic Shift for Web Development](http://webcomponents.org/presentations/web-components-a-tectonic-shift-for-web-development-at-google-io/)介紹Web Component的特色與功用，這是HTML新世代的濫觴，也是接下來發展的新趨勢。
 
 在國內，已有許多優秀的先進將之簡單的介紹一番，包括以下：
 
@@ -197,7 +197,7 @@ function isSupport() {
 
 ## 總結
 
-如果你只需要現成的library且不想了解Web Component的原理，則可以到[Custom Element](customelements.io)尋找其他已完成的kit使用；對於developer而言，不僅javascript可以做成套件，HTML也可以套件化，大大地改變前端工程師的開發方法。
+如果你只需要現成的library且不想了解Web Component的原理，則可以到[Custom Element](http://customelements.io)尋找其他已完成的kit使用；對於developer而言，不僅javascript可以做成套件，HTML也可以套件化，大大地改變前端工程師的開發方法。
 
 有了DOM scoping的思維，元件化後的html更加好維護。但以上所有優點都必須要以高compatibility為優先，原生的Web Component其實並沒有那麼容易做feature detection。
 
@@ -322,7 +322,7 @@ ps: 在投影片中，我們簡單展示如何用observer實作一個加法的�
 </core-ajax>
 ```
 
-`auto`如果設為`true`，代表當`url`或是`params`改變，就會重新發送一次request；`params`則是發送的參數內容；`handleAs`可以設定為不同種類的回傳值，text代表的是`responseText`、xml代表的是`responseXML`、json代表的是`responseText`(但是會先幫你剖析成json，不用再進行`JSON.parse()`)；當然想要設定`method`為`POST`或是`GET`也行，詳細內容請參閱[SPEC](http://www.polymer-project.org/docs/elements/core-elements.html#core-ajax)。
+`auto`如果設為`true`，代表當`url`或是`params`改變，就會重新發送一次request；`params`則是發送的參數內容；`handleAs`可以設定為不同種類的回傳值，text代表的是`responseText`、xml代表的是`responseXML`、json代表的是`responseText`(但是會先幫你剖析成json，不用再進行`JSON.parse()`)；當然想要設定`method`為`POST`或是`GET`也行，詳細內容請參閱[spec](http://www.polymer-project.org/docs/elements/core-elements.html#core-ajax)。
 
 ## Polymer - Paper Element
 
@@ -332,7 +332,7 @@ ps: 在投影片中，我們簡單展示如何用observer實作一個加法的�
 
 ## Compatibility - 相容性
 
-原生的Web Component在瀏覽器內支援度相當差，建議直接使用`Polymer`，如果對google提出的toolkit有興趣也可以找找這個[連結](http://googlewebcomponents/github.io)，裡頭有很多有趣的Web Component範例。
+原生的Web Component在瀏覽器內支援度相當差，建議直接使用`Polymer`，如果對google提出的toolkit有興趣也可以找找這個[連結](http://googlewebcomponents.github.io)，裡頭有很多有趣的Web Component範例。
 
 ## Polymer v.s. AngularJS
 
