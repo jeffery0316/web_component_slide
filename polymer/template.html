@@ -34,9 +34,9 @@
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
   <style>
 
-    *{
+/*    *{
       font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Jhenghei", sans-serif !important;
-    }
+    }*/
     .browser-support {
       width: 120px;
       height: auto;
@@ -108,11 +108,11 @@
   -->
   <slide class="title-slide segue nobackground">
     <img src="images/talk.png" class="talk_dialog" style="position: absolute;margin-left: 60%;top:100px;">
-    <span style="color: white; font-weight: 800; left: 180px;top: 135px;" class="talk_dialog">Let's music!</span>
+    <span style="color: white; font-size: 23px;font-weight: 800; left: 187px;top: 135px;" class="talk_dialog">Let's music!</span>
     <img src="images/front.png" style="width: 900px;">
     <aside class="gdbar" style="margin-top: 400px;">
       <!-- <img src="images/KKBOX_app_icon/KKBOX_app_icon.png"> -->
-      <img src="images/kkbox_logo.png" style="width: 170px;">
+      <img src="images/kkbox_logo.png" style="width: 190px;">
       <!--<img src="images/google_developers_icon_128.png">-->
     </aside>
     <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -151,34 +151,6 @@
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Web Component</h2>
-    </hgroup>
-    <article>
-      <br/><br/><br/>
-      <ul>
-        <li>
-          HTML Template
-        </li>
-        <li>
-          Custom Element
-        </li>
-        <li>
-          Shadow DOM
-        </li>
-        <li>
-          HTML Imports
-        </li>
-        <li>
-          Data binding
-        </li>
-        <li>
-          Decorators (only described in W3C draft)
-        </li>
-      </ul>
-    </article>
-  </slide>
   <slide style="background-image: url('../images/slow1.jpg'); background-repeat: no-repeat;background-size: 1100px auto;">
     <article>
       <div style="margin-left: 200px;margin-top: 360px; font-size: 3em; color: grey;">Low Performance
@@ -208,6 +180,32 @@
     <article>
     <div style="margin-left: 600px; margin-top: 60px; font-size: 2em; color: white;">Back To Start</div>
     <div style="margin-top: 500px; font-size: 0.3em;">https://www.flickr.com/photos/bionicteaching/<div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Component</h2>
+    </hgroup>
+    <article>
+      <br/><br/><br/>
+      <ul>
+        <li>
+          HTML Template
+        </li>
+        <li>
+          Custom Element
+        </li>
+        <li>
+          Shadow DOM
+        </li>
+        <li>
+          HTML Imports
+        </li>
+        <li>
+          Decorators (only described in W3C draft)
+        </li>
+      </ul>
     </article>
   </slide>
 
@@ -244,7 +242,7 @@
       <h2>HTML Template</h2>
     </hgroup>
     <article>
-      使用javascript直接操作template
+      使用javascript直接操作template。example：<a href="../example/example3.html">example3.html</a>
       <pre class="prettyprint" style="margin-top: 10px;" data-lang="javascript">
     $('#useme').on('click', function () {
         var content = document.querySelector('template').content;
@@ -321,7 +319,7 @@
         <li>定義自己的element, 每個element能擁有自己的properties, methods, events</li>
         <li>其他framework能夠一起並用</li>
         <li>直接與底層的DOM操作, addEventListener...等function仍然可以重複使用</li>
-        <li>鍵盤, focus, ARIA (accessibility)</li>
+        <li>keyboard event, focus event, ARIA (accessibility)</li>
         <li>chrome/firefox devtools可以直接偵測element tag</li>
         <li>許多現成的kit ＠ <a href="http://customelements.io">http://customelements.io</a></li>
       </ul>
@@ -373,12 +371,15 @@
         e.target.foo(); // alert 'foo() called'.
       });</pre>
       <pre class="prettyprint" data-lang="javascript">
-      /* new a object */
-      var elem = new XFoo();
-      document.body.appendChild(elem);
-      /* define element in JS */
-      var XFoo = document.registerElement('x-foo');
-      document.body.appendChild(new XFoo());</pre>
+      var XFooProto = Object.create(HTMLElement.prototype);
+      // 1. Give x-foo a foo() method.
+      XFooProto.foo = function() {};
+      // 2. Define a property read-only "bar".
+      Object.defineProperty(XFooProto, 'bar', {value: 5});
+      // 3. Register x-foo's definition.
+      var XFoo = document.registerElement('x-foo', {prototype: XFooProto});
+      var xf = document.createElement('x-foo');
+      document.body.appendChild(xf);</pre>
       <a href="../example/import_custom_element/custom_element.html">demo</a>
     </article>
   </slide>
@@ -389,7 +390,6 @@
     <article>
       <ul>
         <li>DOM/CSS scoping，element並不能被直接存取</li>
-        <li>可以做data-binding</li>
         <li>封裝DOM Tree，確保其他library不會更動到其中的element</li>
       </ul>
       <p style="margin-top: -10px;">
@@ -409,7 +409,8 @@
       <ul>
         <li>Shadow Root</li>
         <ul><p>與shadow root相連的element都稱為shadow host</p><p>在進行頁面渲染時，僅顯示shadow root
-        的內容。shadow host的值會被shadow root覆蓋。</p><p>但是使用javascript取textContent，則只會取得shadow host的值 (shadow root被封裝)</p></ul>
+        的內容。shadow host的值會被shadow root覆蓋。</p><p>但是使用javascript取textContent，則只會取得shadow host的值 (shadow root被封裝)。
+        example: <a href="../example/shadowDOM/card.html">shadowDOM</a></p></ul>
         <li><a href="../example/shadowDOM/visualizer.html">Shadow DOM Tree</a></li>
         <li>Shadow DOM with document fragment</li>
       </ul>
@@ -430,7 +431,7 @@
     <article>
       <ul>
         <li>元件化方法：</li>
-          <p>用iframe區隔不同的document，但是iframe與當前頁面的互相操作不方便，且iframe的width/height也很複雜</p>
+          <p>用iframe區隔不同的document，但是iframe與當前頁面的互相操作不方便，且iframe的width/height操作也很複雜</p>
           <p>用Ajax插入HTML DOM，並產生JS+HTML的骯髒寫法</p>
       </ul>
       <pre class="prettyprint" data-lang="html">
@@ -467,15 +468,6 @@
         <li>wrap in a html document</li>
         <li>dependency management</li>
       </ul>
-    </article>
-  </slide>
-  <slide>
-    <hgroup>
-      <h2>Demo</h2>
-    </hgroup>
-    <article>
-      <div><a href="../example/example3.html">example3.html</a></div>
-      <div><a href="../example/shadowDOM/card.html">shadowDOM</a></div>
     </article>
   </slide>
 
@@ -581,7 +573,7 @@
       &lt;/core-ajax></pre>
       <div style="width: 500px; margin-bottom: 50px;"><a href="../example/example5.html">core-ajax example</a>
       </div>
-
+      <p>result:</p>
       <polymer-element>
         <core-ajax auto url="http://gdata.youtube.com/feeds/api/videos/"
             params='{"alt":"json", "q":"chrome"}'

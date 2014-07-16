@@ -10,12 +10,50 @@
     <body>
         <!-- <x-foo>123</x-foo> -->
         <script type='text/javascript'>
-            var xFoo = document.createElement('x-foo');
+            // tag name must contain dash
+            /* basic way */
+            var xFoo = document.createElement('xfoo');
             xFoo.textContent = 'hello world';
             xFoo.addEventListener('click', function(e) {
               alert('you click x-tag');
             });
             document.body.appendChild(xFoo);
+
+
+            /* another way, define element in JS */
+            var XFooPrototype2 = Object.create(HTMLElement.prototype);
+            XFooPrototype2.createdCallback = function() {
+              this.textContent = "I'm an x-foo!";
+            };
+
+            XFooPrototype2.foo = function() {
+              console.log('foo() called');
+            };
+
+            var XFoo2 = document.registerElement('x-foo2', {
+                prototype: XFooPrototype2
+            });
+            document.body.appendChild(new XFoo2());
+
+            /* last example */
+            var XFooProto3 = Object.create(HTMLElement.prototype);
+
+            // 1. Give x-foo a foo() method.
+            XFooProto3.foo = function() {
+              alert('foo() called');
+            };
+
+            // 2. Define a property read-only "bar".
+            Object.defineProperty(XFooProto3, 'bar', {value: 5});
+
+            // 3. Register x-foo3's definition.
+            var XFoo3 = document.registerElement('x-foo3', {prototype: XFooProto3});
+
+            // 4. Instantiate an x-foo3.
+            var xfoo3 = document.createElement('x-foo3');
+
+            // 5. Add it to the page.
+            document.body.appendChild(xfoo3);
         </script>
     </body>
 </html>

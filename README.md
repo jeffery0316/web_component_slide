@@ -147,7 +147,24 @@ var elem = document.createElement('x-foo');
 elem.addEventListener('click', function(e) {
 e.target.foo(); // alert 'foo() called'.
 });
+
+var XFooProto = Object.create(HTMLElement.prototype);
+
+// 1. Give x-foo a foo() method.
+XFooProto.foo = function() {};
+
+// 2. Define a property read-only "bar".
+Object.defineProperty(XFooProto, 'bar', {value: 5});
+
+// 3. Register x-foo's definition.
+var XFoo = document.registerElement('x-foo', {prototype: XFooProto});
+
+// 4. Create Element
+var xf = document.createElement('x-foo');
+document.body.appendChild(xf);
+
 ```
+
 首先，在tag之中最好要包含一個`-` dash，在`Polymer`當中則是一定要包含，否則會有問題出現。
 接著在javascript中利用`createElement()`創造一個element，並賦予他一個event handler，至此就完成建立自己的element。
 
