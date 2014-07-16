@@ -1,3 +1,7 @@
+## 投影片播放方式
+
+在目錄頁下，使用`python -m SimpleHTTPServer`，並且在瀏覽器中開啟template.html頁面即可。
+
 # Web Component
 
 ## 前言
@@ -179,8 +183,11 @@ div tag的`id`為host是整個shadow DOM的插入點 (insert point)，header、s
 
 ## HTML Import
 
-Web Component中，繫緊各元件重要的一環 - html文件匯入至html文件中，此外，這樣也方便整理各元件化後的html相依。
-好比說script tag的src一般，HTML則是利用`<link rel="">`匯入，值得一提的是，各瀏覽器支援度不高，我們可以利用property check看是否有支援。
+Web Component中，繫緊各元件重要的一環 - 匯入。將html文件匯入至另一份html文件，以便利用它的功能；此外，這樣也方便整理各元件化後的html相依。
+好比說script tag的src一般，HTML則是利用`<link rel="">`匯入，值得一提的是，各瀏覽器支援度不高，我們可以利用property 檢查看是否有支援。
+
+儘管瀏覽器很少完整支援HTML Import，但是`Polymer`有強大的polyfill，可以很方便的匯入文件。
+
 
 ```
 function isSupport() {
@@ -204,6 +211,7 @@ Google Polymer則是一個非常強大的library，不管是功能面或是相�
 基於`Polymer`仍然在開發階段，內建的component其實沒有像jQuery般的如此強大，但Web Component的好處在於元件化後的element可以用自己的javascript加強，想要再套入underscorejs、jQuery都是可以的。
 
 ### Polymer - Use
+
 使用`Polymer`的方法是新建一個html頁面，並且在最前頭加上`polymer.html`
 ```
 <link rel="import" href="../components/polymer/polymer.html">
