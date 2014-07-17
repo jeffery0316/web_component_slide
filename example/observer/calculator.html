@@ -17,7 +17,6 @@
                   {what: 'Hello', who: 'World'},
                   {what: 'GoodBye', who: 'DOM APIs'},
                   {what: 'Hello', who: 'Declarative'},
-                  {what: 'GoodBye', who: 'Imperative'}
                 ];
             }
         });
@@ -26,12 +25,13 @@
 
 <polymer-element name="x-calculator">
     <template>
-        <h3>Observer Element In Polymer</h3>
-        <div id="final" class="final">0</div>
+        <h3>Adder In Polymer</h3>
+<!--         <div id="final" class="final">0</div> -->
         <div>
             <button on-click="{{calculate}}" id="first" value="1" type="text">1</button>
             <button on-click="{{calculate}}" id="second" value="2" type="text">2</button>
             <button on-click="{{calculate}}" id="third" value="3" type="text">3</button>
+            <span id="final" class="final">0</span>
         </div>
         <div>
             <button on-click="{{calculate}}" id="forth" value="1" type="text">4</button>
@@ -63,5 +63,37 @@
                 this.$.final.value = Number(this.$.first.value) + Number(this.$.second.value);
             }
         });
+
     </script>
 </polymer-element>
+
+<polymer-element name="x-equation">
+    <template>
+        <div>
+            <h3>Observer Element in Polymer</h3>
+            <input id="leftVal" value="123" type="text"/>
+            <input id="rightVal" value="456" type="text"/>
+            <input id="equaVal" value="0" class="final" type="text"/>
+        </div>
+        <style>
+            .final {
+                color: blue;
+            }
+        </style>
+    </template>
+    <script type='text/javascript'>
+            Polymer('x-equation', {
+                firstVal: document.querySelector('#leftVal'),
+                secondVal: document.querySelector('#rightVal'),
+                observe: {
+                    '$.leftVal.value': 'cal',
+                    '$.rightVal.value': 'cal'
+                },
+                cal: function (oldVal, newVal) {
+                    var a = document.querySelector('#equaVal');
+                    this.$.equaVal.value = Number(this.$.leftVal.value) + Number(this.$.rightVal.value);
+                }
+            });
+    </script>
+</polymer-element>
+

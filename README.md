@@ -50,7 +50,6 @@ Example:
 ```
     <script>
         $(document).ready(function () {
-
             $('#useme').on('click', function () {
                 var content = document.querySelector('#temp').content;
 
@@ -60,7 +59,6 @@ Example:
                 $('#container').html('Template used: <span>' + span.textContent + '</span>');
             });
         });
-
     </script>
 ```
 
@@ -162,7 +160,6 @@ var XFoo = document.registerElement('x-foo', {prototype: XFooProto});
 // 4. Create Element
 var xf = document.createElement('x-foo');
 document.body.appendChild(xf);
-
 ```
 
 首先，在tag之中最好要包含一個`-` dash，在`Polymer`當中則是一定要包含，否則會有問題出現。
@@ -235,8 +232,7 @@ Google Polymer則是一個非常強大的library，不管是功能面或是相�
 ```
 並且開始定義自己的element，好比說
 ```
-<polymer-element name="">
-
+<polymer-element name="foo-bar">
 </polymer-element>
 ```
 
@@ -343,7 +339,7 @@ ps: 在投影片中，我們簡單展示如何用observer實作一個加法的�
 
 ## Polymer - Paper Element
 
-這是2014年Google I/O的其中一項重要產品，對於一般使用者來說僅需載入相對應的HTML文件就可以使用。值得一提的是FOUC (Flash of unstyled content)，在element被註冊(`registerElement()`)之前，custom element會被定義為`HTMLUnknownElement`，這代表custom element無法被樣式表所套用，造成會有閃爍的感覺。[參考文件](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/#upgrades)
+這是2014年Google I/O的其中一項重要產品，對於一般使用者來說僅需載入相對應的HTML文件就可以使用。值得一提的是FOUC (Flash of unstyled content)，在element繼承HTMLElement.prototype之前，custom element會被定義為`HTMLUnknownElement`，這代表custom element無法被樣式表所套用，造成會有閃爍的感覺。[參考文件](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/#upgrades)
 
 一般的解決方法是加上`unresolved`屬性，在element被升為一般的`HTMLElement`之前，會一直保持hidden。
 
