@@ -128,6 +128,30 @@
       <h2>參考資料</h2>
     </hgroup>
     <article>
+    <aside class="note">
+      <section>
+        <p>
+          2013年時，Eric Bidelman就曾經在Google I/O迅速地以 Web Components: A Tectonic Shift for Web Development介紹Web Component的特色與功用，這是HTML新世代的濫觴，也是接下來發展的新趨勢。
+        </p>
+        <p>
+          在國內，已有許多優秀的先進將之簡單的介紹一番，包括以下：
+          <ul>
+            <li><a href="http://blog.hinablue.me/entry/web-components-first-look">Hinablue Web Components 初探</a></li>
+            <li><a href="https://blog.othree.net/log/2013/11/27/web-component">OThree Web Component</a>
+            </li>
+          </ul>
+        </p>
+        <p>
+          在本repository中，我們會簡單帶過四個最基本的功用，並引領至目前(2014年)該領域最熱門的library - Polymer。 首先，該repository僅僅需要你15~30分鐘的時間來了解什麼是Web Component，因此並不會如各參考資料般的詳細， 如果對該技術燃起了興趣，煩請參閱以下的資料：
+          <ul>
+            <li><a href="http://www.w3.org/TR/components-intro/">w3c spec</a></li>
+            <li><a href="http://html5-demos.appspot.com/static/webcomponents/index.html">&lt;web>components&lt;/web></a></li>
+            <li><a href="http://polymer-change.appspot.com/">Polymer & Web Components</a></li>
+          </ul>
+        </p>
+        <!-- <p><b>Remember to say this tag line!</b></p> -->
+      </section>
+    </aside>
       <br/><br/><br/>
       <ul>
         <li>2012
@@ -163,6 +187,7 @@
       <div style="margin-left: 500px;margin-top: 560px; font-size: 2em; color: white;">Template Engine
       </div>
       <div style="font-size: 0.3em; margin-top: 10px;">http://kkga.github.io/spacegray/</div>
+      <div class="with-notes"></div>
     </article>
   </slide>
 
@@ -345,7 +370,7 @@
       -->
     </article>
   </slide>
-  <slide>
+<!--   <slide>
     <hgroup>
       <h2>Custom Element - Example <img src="../images/logo.svg" style="width: 50px;"/></h2>
     </hgroup>
@@ -367,29 +392,36 @@
           &lt;/script>
         &lt;/element></pre>
     </article>
-  </slide>
+  </slide> -->
   <slide>
     <hgroup>
       <h2>Use Custom Element <img src="../images/logo.svg" style="width: 50px;"/></h2>
     </hgroup>
     <article>
 
-      <pre class="prettyprint" data-lang="javascript">
-      &lt;x-foo>&lt;/x-foo>&lt;!-- names must contains dash -->
+<!--       <pre class="prettyprint" data-lang="javascript">
+
       /* or use in DOM */
       var elem = document.createElement('x-foo');
       elem.addEventListener('click', function(e) {
         e.target.foo(); // alert 'foo() called'.
-      });</pre>
+      });</pre> -->
       <pre class="prettyprint" data-lang="javascript">
+      &lt;x-foo>&lt;/x-foo>&lt;!-- names must contains dash -->
       var XFooProto = Object.create(HTMLElement.prototype);
       // 1. Give x-foo a foo() method.
       XFooProto.foo = function() {};
+
       // 2. Define a property read-only "bar".
       Object.defineProperty(XFooProto, 'bar', {value: 5});
+
       // 3. Register x-foo's definition.
       var XFoo = document.registerElement('x-foo', {prototype: XFooProto});
+
       var xf = document.createElement('x-foo');
+      xf.addEventListener('click', function(e){
+        e.target.foo(); // alert "foo() called."
+      });
       document.body.appendChild(xf);</pre>
       <a href="../example/import_custom_element/custom_element.html">demo</a>
     </article>
@@ -555,6 +587,7 @@
     <article>
       <p style="letter-spacing: 2px;">Polymer supports two-way data binding. Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of an application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
       </p>
+      <br/>
       <pre class="prettyprint" data-lang="javascript">
       &lt;polymer-element name="tag-name">
         &lt;template>
@@ -769,8 +802,8 @@
       <!-- populated from slide_config.json -->
     </p>
   </slide>
-
-  <slide class="logoslide dark nobackground" style="background-color: rgb(0, 174, 216) !important;">
+<!-- rgb(0, 174, 216)-->
+  <slide class="logoslide dark nobackground" style="background-color: rgb(29, 173, 202) !important;">
     <article class="flexbox vcenter">
       <span>
         <!-- <img src="images/google_developers_logo_white.png"> -->
